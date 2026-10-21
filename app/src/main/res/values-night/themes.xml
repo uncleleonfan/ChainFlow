@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+      夜间模式主题（与 values/themes.xml 保持一致）
+      Compose 主题始终为 Dark Trading Terminal 风格，此处仅需深色启动背景，
+      避免冷启动时出现白色闪烁。
+    -->
+    <style name="Theme.ChainFlow" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#0A0E14</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

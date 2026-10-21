@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+      应用级主题（Android View 层）
+      Compose 内部使用 ChainFlowTheme（见 core:ui），
+      此处只需保证启动窗口 / 系统栏为深色背景，避免冷启动白屏闪烁。
+    -->
+    <style name="Theme.ChainFlow" parent="android:Theme.Material.NoActionBar">
+        <!-- 深色背景：与 Compose 主题背景色一致（#0A0E14） -->
+        <item name="android:windowBackground">#0A0E14</item>
+        <!-- 状态栏透明，由 Compose edge-to-edge 控制 -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

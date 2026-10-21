@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ChainFlow 应用清单
+  - INTERNET：行情 REST / WebSocket / RPC / WalletConnect（PRD 必需）
+  - ACCESS_NETWORK_STATE：离线检测（PRD §26 Offline Strategy）
+  - USE_BIOMETRIC：指纹 / 面容解锁（PRD §13.2，Phase 2 使用）
+  - usesCleartextTraffic=false：禁止明文流量，全部走 HTTPS/WSS
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+    <application
+        android:name=".ChainFlowApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ChainFlow"
+        tools:targetApi="34">
+
+        <!-- 唯一 Activity：单 Activity + Compose 导航架构 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ChainFlow">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

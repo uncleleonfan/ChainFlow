@@ -1,0 +1,111 @@
+# =============================================================================
+# ChainFlow 版本目录（Version Catalog）
+# 集中管理所有依赖版本，避免多处硬编码导致版本不一致
+# 注意：AGP 9 使用内置 Kotlin，无需 kotlin-android 插件
+# =============================================================================
+
+[versions]
+# ---- 构建工具 ----
+agp = "9.4.1"                        # Android Gradle Plugin（内置 Kotlin 支持）
+kotlin = "2.3.20"                    # Kotlin 版本（Compose Compiler 插件与此绑定）
+ksp = "2.3.12"                       # Kotlin Symbol Processing（Room/Hilt 注解处理）
+hilt = "2.60.1"                      # Hilt 依赖注入（AGP 9 要求 2.59.2+）
+
+# ---- AndroidX / Compose ----
+coreKtx = "1.17.0"                   # AndroidX Core KTX 扩展
+activityCompose = "1.13.0"           # Activity Compose 集成
+composeBom = "2026.09.00"            # Compose BOM（统一管理 Compose 各库版本）
+navigationCompose = "2.10.2"         # Navigation Compose（页面导航）
+lifecycle = "2.11.0"                 # Lifecycle / ViewModel / Runtime Compose
+hiltNavigationCompose = "1.4.0"      # Hilt 与 Navigation Compose 集成
+coroutines = "1.10.2"                # Kotlin 协程
+kotlinxSerialization = "1.11.0"      # kotlinx-serialization（JSON 解析）
+room = "2.8.5"                       # Room 本地数据库
+retrofit = "3.0.0"                   # Retrofit 网络请求
+okhttp = "5.3.2"                     # OkHttp（Retrofit 底层 + WebSocket）
+datastore = "1.1.7"                  # DataStore（用户偏好设置）
+biometric = "1.1.0"                  # 生物识别（指纹 / 面容）
+web3j = "6.0.0"                      # web3j：EVM 钱包 / 签名 / RPC
+solanaKt = "2.1.1"                   # SolanaKt：Solana 钱包/签名/RPC（内置 BIP39）
+
+# ---- 测试 ----
+junit = "4.13.2"
+junitExt = "1.3.0"
+espressoCore = "3.7.0"
+coroutinesTest = "1.10.2"
+truth = "1.4.5"                      # Google Truth 断言库
+
+[libraries]
+# ---- AndroidX 基础 ----
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+
+# ---- Compose（版本统一由 BOM 管理，故不指定 version） ----
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
+
+# ---- Lifecycle / ViewModel ----
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycle" } # ProcessLifecycleOwner（应用前后台生命周期）
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+
+# ---- Navigation ----
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+
+# ---- Hilt 依赖注入 ----
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+
+# ---- 协程 ----
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+
+# ---- 序列化 ----
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+
+# ---- Room 数据库 ----
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+# ---- 网络 ----
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-kotlinx-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+# ---- 存储 / 安全 ----
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+androidx-biometric = { group = "androidx.biometric", name = "biometric", version.ref = "biometric" }
+
+# ---- Web3 ----
+web3j-core = { group = "org.web3j", name = "core", version.ref = "web3j" }
+solanakt = { group = "com.github.metaplex-foundation.SolanaKt", name = "solana", version.ref = "solanaKt" } # Solana 全栈库（JitPack 子模块坐标）
+
+# ---- 测试 ----
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitExt" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+
+[plugins]
+# Android 应用模块插件
+android-application = { id = "com.android.application", version.ref = "agp" }
+# Android 库模块插件（AGP 9 内置 Kotlin，无需 kotlin-android）
+android-library = { id = "com.android.library", version.ref = "agp" }
+# Kotlin Compose 编译器插件（版本必须与 Kotlin 版本一致）
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+# Kotlin 序列化插件（编译期生成序列化器）
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+# KSP 注解处理（Room / Hilt）
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+# Hilt 依赖注入
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
